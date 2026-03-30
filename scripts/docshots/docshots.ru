@@ -206,8 +206,8 @@ class PagyDocshots < Sinatra::Base
 end
 
 # Simple array-based collection that acts as a standard DB collection.
-# Use it as a simple way to get a collection that acts as a AR scope, but without any DB
-# or create an ActiveRecord class or anything else that you need instead
+# Use it as a simple way to get a collection that acts as an AR scope, but without any DB
+# or create an ActiveRecord class or anything else that you need instead.
 class MockCollection < Array
   def initialize(arr = Array(1..1000))
     super

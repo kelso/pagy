@@ -7,7 +7,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Javascript pagination for bulma: it returns a nav with a data-pagy attribute used by the Pagy.nav javascript
     def bulma_series_nav_js(classes: 'pagination', **)
       a_lambda = a_lambda(**)
 

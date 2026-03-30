@@ -63,12 +63,14 @@ replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_
 system(Scripty::ROOT.join('src/build').to_s)
 
 ##### RELEASE BODY
-# Prepare the .github/latest_release_body.md file
-# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag)
+# Prepare the .github/latest_release_body.md file.
+# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag).
 release_body_path = '.github/latest_release_body.md'
+
 # Copy the whats_new from the README to the latest_release_body file
 whats_new_content = extract_section_from_file('README.md', 'whats_new')
 replace_section_in_file(release_body_path, 'whats_new', whats_new_content)
+
 # Insert the changes into the latest_release_body file
 changes = File.read(gitlog.path)
 replace_string_in_file(release_body_path, "### Changes in #{old_version}", "### Changes in #{new_version}")

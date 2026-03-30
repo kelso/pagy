@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Return the page url for any page
   def page_url(page, **)
     target = case page
              when :first          then nil

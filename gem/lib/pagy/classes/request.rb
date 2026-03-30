@@ -38,6 +38,7 @@ class Pagy
 
     private
 
+    # Overriding support
     def get_params(request)
       request.GET.merge(request.POST).to_h.freeze
     end

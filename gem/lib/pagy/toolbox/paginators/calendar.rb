@@ -4,7 +4,7 @@ class Pagy
   module CalendarPaginator
     module_function
 
-    # Take a collection and a configuration Hash and return an array with 3 items: [calendar, pagy, results]
+    # Take a collection and a config Hash and return [calendar, pagy, results]
     def paginate(context, collection, config)
       context.instance_eval do
         allowed_options = Calendar::UNITS + %i[offset disabled request]

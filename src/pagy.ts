@@ -45,7 +45,7 @@ interface NavJsElement extends HTMLElement {
 }
 
 // The syntax used in this file has been carefully composed to minimize
-// the pagy.min.js size and avoid pollution in the window object
+// the pagy.min.js size and avoid pollution in the window object.
 export default (() => {
   const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window;
   // eslint-disable-next-line prefer-const
@@ -54,6 +54,7 @@ export default (() => {
     storage = sessionStorage; // shorten the compiled size
     sync    = new BroadcastChannel(pagy);
     tabId   = Date.now();
+
     // Sync the sessionStorage keys for the cutoffs opened in a new tab/window
     sync.addEventListener("message", (e:MessageEvent<SyncData>) => {
       if (e.data.from) { // request cutoffs
@@ -83,7 +84,7 @@ export default (() => {
         B64SafeDecode = (base64:string)  => B64Decode(B64Unsafe(base64))
   */
   const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""),
+                                                .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""),
         B64Decode     = (base64:string)  => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
 
   // Return a random key: 3 chars max, base-36 number < 36**3

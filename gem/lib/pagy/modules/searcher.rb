@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Relegate internal functions. Make overriding search classes easier.
   module Searcher
     module_function
 

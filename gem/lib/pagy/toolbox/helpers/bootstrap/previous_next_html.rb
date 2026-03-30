@@ -4,7 +4,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Return the enabled/disabled previous/next page anchor tag, embedded in the li tag
     def bootstrap_html_for(which, a_lambda)
       if send(which)
         %(<li class="page-item #{which}">#{

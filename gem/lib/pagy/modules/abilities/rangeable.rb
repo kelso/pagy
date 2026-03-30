@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add method supporting range checking, range error and rescue
+  # Support range checking, error and rescue
   module Rangeable
-    # Check if in range
     def in_range?
       return @in_range if defined?(@in_range)
       return true if (@in_range = yield)

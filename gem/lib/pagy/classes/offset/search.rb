@@ -15,7 +15,7 @@ class Pagy
   end
 
   # Search classes do not use OFFSET for querying a DB;
-  # however, they use the same positional technique used by Offset
+  # however, they use the same positional technique used by Offset.
   class SearchBase < Offset
     DEFAULT = { search_method: :search }.freeze
 

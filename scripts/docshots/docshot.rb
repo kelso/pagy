@@ -20,7 +20,7 @@ rescue Errno::ECONNREFUSED
   sleep 1
 end
 
-# We run the capture.js
+# Run the capture.js
 outdir  = Pagy::ROOT.join('../assets/images')
 capture = Pagy::ROOT.join('../scripts/docshots/capture.js')
 system("bun run #{capture} #{app_url} #{outdir}")

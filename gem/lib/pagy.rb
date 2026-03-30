@@ -7,8 +7,7 @@ require_relative 'pagy/modules/abilities/linkable'
 require_relative 'pagy/modules/abilities/configurable'
 require_relative 'pagy/toolbox/helpers/loaders'
 
-# Top superclass: it defines only what's common to all the subclasses
-# noinspection RubyMismatchedArgumentType
+# Top superclass
 class Pagy
   VERSION     = '43.4.4'
   ROOT        = Pathname.new(__dir__).parent.freeze
@@ -48,7 +47,7 @@ class Pagy
 
   protected
 
-  # Define the hierarchical identity methods, overridden by the respective classes
+  # Instance identity methods, overridden by the respective classes
   def offset?    = false
   def countless? = false
   def calendar?  = false
@@ -56,7 +55,7 @@ class Pagy
   def keyset?    = false
   def keynav?    = false
 
-  # Validates and assign the passed options: they must be present and value.to_i must be >= min
+  # Validate presence and min value of options
   def assign_and_check(name_min)
     name_min.each do |name, min|
       value = @options[name]

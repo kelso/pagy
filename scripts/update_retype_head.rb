@@ -4,10 +4,10 @@
 require_relative 'scripty'
 include Scripty  # rubocop:disable Style/MixinUsage
 
-# Prompt for the old version tag
+# Prompt for the old version tag.
 require_relative '../gem/lib/pagy'
 
-# Insert the latest ai-widget in the retype head
+# Insert the latest ai-widget in the retype head.
 replace_section_in_file('docs/_includes/head.html', 'ai_widget', <<~HTML)
   <!-- GENERATED FILE! DO NOT EDIT -->
   <script>

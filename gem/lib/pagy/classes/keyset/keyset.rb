@@ -4,9 +4,9 @@ require 'json'
 require_relative '../../modules/b64'
 
 class Pagy
-  # Implement wicked-fast keyset pagination for big data
+  # Fast keyset pagination for big data
   class Keyset < Pagy
-    # Autoload adapters: files are loaded only when const_get accesses them
+    # Autoload adapters only when const_get accesses them
     module Adapters
       path = Pathname.new(__dir__)
       autoload :ActiveRecord, path.join('adapters/active_record')
@@ -21,7 +21,7 @@ class Pagy
 
     class TypeError < ::TypeError; end
 
-    # Factory method: detects the set type, configures the subclass, and instantiates
+    # Factory method: detect the set type, configure the subclass, and instantiate.
     def self.new(set, **)
       # 1. Handle direct subclass usage (e.g. Pagy::Keyset::ActiveRecord.new)
       if /::(?:ActiveRecord|Sequel)$/.match?(name)
@@ -42,7 +42,7 @@ class Pagy
       const_get(adapter).tap { _1.mix_in_adapter(adapter) }.new(set, **)
     end
 
-    # Helper to lazy-include the adapter module
+    # Lazy-include the adapter module
     def self.mix_in_adapter(adapter)
       adapter_module = Adapters.const_get(adapter)
       include(adapter_module) unless self < adapter_module
@@ -61,7 +61,7 @@ class Pagy
       self.next
     end
 
-    # Return the array of records for the current page
+    # The array of records for the current page
     def records
       @records ||= begin
                      ensure_select
@@ -69,7 +69,7 @@ class Pagy
                    end
     end
 
-    # Return the next page (i.e., the cutoff of the current page)
+    # The next page (i.e., the cutoff of the current page)
     def next
       records
       return unless @more
@@ -135,13 +135,12 @@ class Pagy
       "#{hint} AND (#{query})"
     end
 
-    # Return the prefixed arguments from a cutoff
+    # The prefixed arguments from a cutoff
     def arguments_from(cutoff, prefix = nil)
       attributes = typecast(@keyset.keys.zip(cutoff).to_h)
       prefix ? attributes.transform_keys { |key| :"#{prefix}#{key}" } : attributes
     end
 
-    # Extract the cutoff from the last record (only called if @more)
     def extract_cutoff
       attributes = keyset_attributes_from(@records.last)
       @options[:pre_serialize]&.(attributes)

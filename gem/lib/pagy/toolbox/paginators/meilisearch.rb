@@ -6,7 +6,6 @@ class Pagy
   module MeilisearchPaginator
     module_function
 
-    # Paginate from the search object
     def paginate(search, options)
       if search.is_a?(Search::Arguments) # Active mode
 

@@ -6,7 +6,6 @@ class Pagy
   module OffsetPaginator
     module_function
 
-    # Return the Pagy::Offset instance and results
     def paginate(collection, options)
       options[:page]  ||= options[:request].resolve_page
       options[:limit]   = options[:request].resolve_limit

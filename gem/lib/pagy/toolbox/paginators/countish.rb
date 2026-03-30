@@ -6,7 +6,6 @@ class Pagy
   module CountishPaginator
     module_function
 
-    # Return the Offset::Countish instance and records
     def paginate(collection, options)
       options[:page] ||= options[:request].resolve_page(force_integer: false)
 

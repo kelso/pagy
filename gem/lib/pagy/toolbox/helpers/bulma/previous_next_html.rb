@@ -4,7 +4,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Return the enabled/disabled previous/next page anchor tag
     def bulma_html_for(which, a_lambda)
       %(<li>#{
         if send(which)

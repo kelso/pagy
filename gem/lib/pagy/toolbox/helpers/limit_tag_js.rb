@@ -4,7 +4,6 @@ require_relative 'support/data_pagy_attribute'
 
 class Pagy
   module NumericHelpers
-    # Return the limit selector HTML. For example "Show [20] items per page"
     def limit_tag_js(id: nil, item_name: nil, client_max_limit: @options[:client_max_limit], **)
       raise OptionError.new(self, :client_max_limit, 'to be truthy', client_max_limit) unless client_max_limit
 

@@ -6,13 +6,13 @@ class Pagy
   # Support spaces in placeholder params
   class EscapedValue < String; end
 
-  # Provide the helpers to handle the url and anchor
+  # Handle the url and anchor
   module Linkable
     module QueryUtils
       module_function
 
-      # Extracted from Rack::Utils and reformatted for rubocop
-      # Allow unescaped Pagy::RawQueryValue
+      # Extracted from Rack::Utils and reformatted for rubocop.
+      # Allow unescaped Pagy::RawQueryValue.
       def build_nested_query(value, prefix = nil)
         case value
         when Array
@@ -38,7 +38,7 @@ class Pagy
 
     protected
 
-    # Overridable by classes with composite page param
+    # Overriding support for classes with composite page param
     def compose_page_param(page) = page
 
     # Return the URL for the page, relying on the Pagy::Request
@@ -63,6 +63,7 @@ class Pagy
       compose_url(opts[:absolute], opts[:path], params, fragment)
     end
 
+    # Overriding support
     def compose_url(absolute, path, params, fragment)
       query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?') # conditionally prepend '?'
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"

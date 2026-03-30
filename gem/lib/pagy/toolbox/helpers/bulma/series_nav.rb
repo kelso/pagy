@@ -7,7 +7,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Pagination for bulma: it returns the html with the series of links to the pages
     def bulma_series_nav(classes: 'pagination', **)
       a_lambda = a_lambda(**)
 

@@ -6,7 +6,6 @@ class Pagy
   module ElasticsearchRailsPaginator
     module_function
 
-    # Paginate from the search object
     def paginate(search, options)
       if search.is_a?(Search::Arguments)  # Active mode
 
@@ -33,7 +32,7 @@ class Pagy
       end
     end
 
-    # Get from and size params from the response object, supporting different versions of ElasticsearchRails
+    # Support different versions of ElasticsearchRails
     def pagination_params_from(response_object)
       definition = response_object.search.definition
       definition = definition.to_hash if definition.respond_to?(:to_hash)
@@ -45,7 +44,7 @@ class Pagy
       [from, size]
     end
 
-    # Get the count from the response object, supporting different versions of ElasticsearchRails
+    # Support different versions of ElasticsearchRails
     def total_count_from(response_object)
       total = response_object.instance_eval do
                 respond_to?(:response) ? response['hits']['total'] : raw_response['hits']['total']

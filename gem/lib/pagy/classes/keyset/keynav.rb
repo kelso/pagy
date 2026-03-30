@@ -2,14 +2,13 @@
 
 class Pagy
   class Keyset
-    # Use keyset pagination with resources for all the frontend helpers
+    # Keyset pagination with broad UI support
     class Keynav < Keyset
       # Avoid conflicts between filter arguments in composite SQL fragments
       PRIOR_PREFIX = 'prior_'
       PAGE_PREFIX  = 'page_'
 
-      # Define empty subclasses to allow specific typing without triggering autoload.
-      # The .new factory in Keyset will handle mixing in the adapter logic from Pagy::Keyset::Adapters.
+      # Define empty subclasses to allow specific typing without triggering autoload
       class ActiveRecord < self; end
       class Sequel < self; end
 

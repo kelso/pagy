@@ -6,8 +6,6 @@ class Pagy
   module KeynavJsPaginator
     module_function
 
-    # Return the Pagy::Keyset::Keynav instance and paginated records.
-    # Fall back to :countless if the :page has no client data.
     def paginate(set, options)
       page = options[:request].resolve_page(force_integer: false) # allow nil
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Generic option error
+  # Specific subclass of ArgumentError
   class OptionError < ArgumentError
     attr_reader :pagy, :option, :value
 
-    # Set the options and prepare the message
+    # Prepare a useful feedback
     def initialize(pagy, option, description, value)
       @pagy   = pagy
       @option = option
@@ -15,7 +15,7 @@ class Pagy
     end
   end
 
-  # Specific range error
+  # Specific subclass of OptionError
   class RangeError < OptionError; end
 
   # I18n localization error
