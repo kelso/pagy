@@ -87,7 +87,7 @@ set = collection.order(:last_name).order(:first_name).order(:id)
 
 ==- :icon-sliders:&nbsp; Options
 
-{{ include "snippets/keyset-options" }}
+{{ include "options/keyset" }}
 
 ==- :icon-mention:&nbsp; Readers
 

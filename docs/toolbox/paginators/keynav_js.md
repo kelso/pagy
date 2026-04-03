@@ -45,7 +45,7 @@ It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 
 ==- :icon-sliders:&nbsp; Options
 
-{{ include "snippets/keyset-options" }}
+{{ include "options/keyset" }}
 
 ==- :icon-mention:&nbsp; Readers
 

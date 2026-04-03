@@ -13,4 +13,4 @@
   end
   ```
 
-{{ include "snippets/paginator-options" }}
+{{ include "paginator" }}

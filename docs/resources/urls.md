@@ -21,13 +21,14 @@ Pagy generates its specialized URLs ~20x faster than generic helpers like rails'
 These options give you full control over the URL composition for [paginator](/toolbox/paginators.md) and [helper](/toolbox/helpers.md):
 
 :::
+
 === Consumed by Paginators
 
-{{ include "snippets/paginator-url-options" }}
+{{ include "options/paginator-url" }}
 
 === Consumed by Helpers
 
-{{ include "snippets/helper-url-options" }}
+{{ include "options/helper-url" }}
 
 :::
 

@@ -18,4 +18,4 @@
                      cookie:   'xyz' }               # The 'pagy' cookie, only for keynav
   ```
 
-{{ include "paginator-url-options" }}
+{{ include "paginator-url" }}

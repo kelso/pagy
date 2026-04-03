@@ -33,7 +33,7 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
   - `@records` behaves like a standard collection.
   - The collection ends when `@records.size < @pagy.limit`.
 
-{{ include "snippets/offset-options" }}
+{{ include "options/offset" }}
 
 ==- :icon-mention:&nbsp; Readers
 

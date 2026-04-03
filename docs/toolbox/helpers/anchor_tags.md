@@ -59,11 +59,12 @@ require 'pagy/console'
 ==- :icon-sliders:&nbsp; Options
 
 `text: 'My Page'`
-: Override the default generated page label
+: Override the default text _(instead of looking up the `pagy.previous`/`pagy.next` entry in the dictionary)_
 
 `aria_label: 'My Link'`
-: Override the default aria label string looked up in the dictionary
+: Override the default aria label _(instead of looking up the `pagy.aria_label.previous`/`pagy.aria_label.next` entry in the dictionary)_
 
-{{ include "snippets/helper-options" }}
+
+{{ include "options/helper-url" }}
 
 ===

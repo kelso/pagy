@@ -1,6 +1,6 @@
 ---
 label: :offset
-icon: move-to-end-24
+icon: move-to-end
 order: 100
 ---
 
@@ -34,7 +34,7 @@ The [:countish](countish) paginator offers identical UI features, but it's up to
 
 ==- :icon-sliders:&nbsp; Options
 
-{{ include "snippets/offset-options" }}
+{{ include "options/offset" }}
 
 ==- :icon-mention:&nbsp; Readers
 

@@ -57,7 +57,7 @@ Search paginators don't query a DB, but use the same positional technique as [:o
 `search_method: :my_search`
 : Customize the name of the `elasticsearch_rails` method to use (default `:search`).
 
-{{ include "snippets/paginator-options" }}
+{{ include "options/paginator" }}
 
 ==- :icon-mention:&nbsp; Readers
 

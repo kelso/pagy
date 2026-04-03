@@ -52,7 +52,7 @@ require 'pagy/console'
 
 ==- :icon-sliders:&nbsp; Options
 
-{{ include "snippets/helper-options" }}
+{{ include "options/helper-url" }}
 
 ==- :icon-alert:&nbsp; Caveats
 
