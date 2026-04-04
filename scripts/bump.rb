@@ -55,8 +55,15 @@ old_major, old_minor, = old_version.to_s.split('.')
 new_major, new_minor, = new_version.to_s.split('.')
 old_base_version      = "#{old_major}.#{old_minor}"
 new_base_version      = "#{new_major}.#{new_minor}"
-replace_string_in_file('docs/CHANGELOG.md', old_base_version, new_base_version)
-replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_version)
+
+%w[docs/CHANGELOG.md
+   docs/guides/quick-start.md].each do |path|
+  replace_string_in_file(path, old_base_version, new_base_version)
+end
+
+next_path = 'docs/guides/pagy-next.md'
+replace_string_in_file(next_path, old_version.to_s, new_version.to_s, all: true)
+replace_string_in_file(next_path, old_base_version, new_base_version, all: true)
 
 ##### BUILD JAVASCRIPT (with the new versions)
 # Build JavaScript files (to update the version)

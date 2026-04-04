@@ -84,4 +84,4 @@ class Pagy
   end
 end
 
-require_relative 'pagy/deprecations'
+require_relative ENV['PAGY_NEXT'] == 'true' ? 'pagy/next' : 'pagy/deprecated'
