@@ -51,5 +51,5 @@ jobs:
         with:
           ruby-version: '4.0'
           bundler-cache: true
-      - name: Run E2E Tests
-        run: bundle exec rake test:e2e
+      - name: Test E2E apps
+        run: bundle exec thor test:e2e:apps

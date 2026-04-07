@@ -29,6 +29,7 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rubocop-thread_safety'
   gem 'simplecov', require: false
+  gem 'thor'
 end
 
 group :playground do

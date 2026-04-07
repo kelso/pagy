@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
-require_relative '../test/e2e/helpers/e2e_app'
-
-namespace :test do
-  # Task for E2E tests only
-  TaskHelper.def_test_task(:e2e, 'test/e2e/**/*_test.rb')
-
-  namespace :e2e do
-    E2eApp::APPS.each_key do |app|
-      TaskHelper.def_test_task(app, "test/e2e/#{app}_test.rb")
+class Test < Thor
+  class E2e < Test
+    desc 'apps [APP]', 'Test all E2E apps (or just APP)'
+    def apps(app = nil)
+      files = if app
+                puts "\nTesting E2E #{app} app..."
+                "test/e2e/#{app}_test.rb"
+              else
+                puts "\nTesting E2E apps..."
+                'test/e2e/**/*_test.rb'
+              end
+      run_tests(Dir.glob(files))
     end
 
-    desc 'Download external assets for E2E tests'
-    task :download_assets do
+    desc 'update_assets', 'Update assets for E2E apps'
+    def update_assets
       require 'open-uri'
 
       assets_path = Pagy::ROOT.join('../test/e2e/assets')
