@@ -55,20 +55,29 @@ old_major, old_minor, = old_version.to_s.split('.')
 new_major, new_minor, = new_version.to_s.split('.')
 old_base_version      = "#{old_major}.#{old_minor}"
 new_base_version      = "#{new_major}.#{new_minor}"
-replace_string_in_file('docs/CHANGELOG.md', old_base_version, new_base_version)
-replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_version)
+
+%w[docs/CHANGELOG.md
+   docs/guides/quick-start.md].each do |path|
+  replace_string_in_file(path, old_base_version, new_base_version)
+end
+
+next_path = 'docs/guides/pagy-next.md'
+replace_string_in_file(next_path, old_version.to_s, new_version.to_s, all: true)
+replace_string_in_file(next_path, old_base_version, new_base_version, all: true)
 
 ##### BUILD JAVASCRIPT (with the new versions)
 # Build JavaScript files (to update the version)
 system(Scripty::ROOT.join('src/build').to_s)
 
 ##### RELEASE BODY
-# Prepare the .github/latest_release_body.md file
-# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag)
+# Prepare the .github/latest_release_body.md file.
+# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag).
 release_body_path = '.github/latest_release_body.md'
+
 # Copy the whats_new from the README to the latest_release_body file
 whats_new_content = extract_section_from_file('README.md', 'whats_new')
 replace_section_in_file(release_body_path, 'whats_new', whats_new_content)
+
 # Insert the changes into the latest_release_body file
 changes = File.read(gitlog.path)
 replace_string_in_file(release_body_path, "### Changes in #{old_version}", "### Changes in #{new_version}")

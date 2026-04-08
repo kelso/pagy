@@ -7,8 +7,7 @@ require 'active_support/core_ext/numeric/time'
 require 'active_support/core_ext/integer/time'
 
 class Pagy
-  # Calendar class
-  # noinspection RubyMismatchedArgumentType
+  # Calendar class, subclass of Hash
   class Calendar < Hash
     path = Pathname.new(__dir__)
     autoload :Unit,    path.join('unit')
@@ -22,7 +21,6 @@ class Pagy
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
     class << self
-      # Localize with rails-i18n in any env
       def localize_with_rails_i18n_gem(*locales)
         Unit.prepend(Module.new { def localize(...) = ::I18n.localize(...) })
         # :nocov:
@@ -40,10 +38,10 @@ class Pagy
       def init(...) = new.send(:init, ...)
     end
 
-    # Return the current time of the smallest time unit shown
+    # The current time of the smallest time unit shown
     def showtime = self[@units.last].from
 
-    # Return the url for the calendar (shortest unit) page at time
+    # The url for the calendar (shortest unit) page at time
     def url_at(time, **)
       page_keys = {}
 
@@ -69,7 +67,7 @@ class Pagy
       @params   = params
       @page_key = conf[:offset][:page_key] || DEFAULT[:page_key]
 
-      # set all the :page_key options for later deletion
+      # Set all the :page_key options for later deletion
       @units.each { |unit| conf[unit][:page_key] = "#{unit}_#{@page_key}" }
 
       calendar    = {}
@@ -81,8 +79,8 @@ class Pagy
         unit_conf[:querify] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
         unit_conf[:page]    = @params[unit_conf[:page_key]] # requested page
+        # Simplecov doesn't need to cover a fail block_given?
         # :nocov:
-        # simplecov doesn't need to fail block_given?
         unit_conf[:counts] = yield(unit, unit_conf[:period]) if block_given?
         # :nocov:
         calendar[unit] = unit_object = create(unit, **unit_conf)
@@ -91,7 +89,7 @@ class Pagy
       [replace(calendar), unit_object.from, unit_object.to]
     end
 
-    # Create a unit subclass instance by using the unit name (internal use)
+    # Create an instance of a Unit subclass by using its name (internal use)
     def create(unit, **)
       raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 

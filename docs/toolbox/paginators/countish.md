@@ -40,7 +40,7 @@ It **fully** supports all the helpers and navigators.
   - Recounting gets the user more precise info and minimizes the page differences with lengthy page-browsing and abundant DB insertions/deletions.
     - It does not fix the OFFSET-intrinsic "drift" of records on active DB insertions/deletions.
 
-{{ include "snippets/offset-options" }}
+{{ include "options/offset" }}
 
 ==- :icon-mention:&nbsp; Readers
 

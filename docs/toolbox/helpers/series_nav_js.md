@@ -91,12 +91,14 @@ require 'pagy/console'
 
 ==- :icon-sliders:&nbsp; Options
 
+{{ include "options/series" }}
+
 `steps: { 0 => 5, 540 => 7, ... }`
 : Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-{{ include "snippets/nav-options" }}
+{{ include "options/navs" }}
 
-{{ include "snippets/helper-options" }}
+{{ include "options/helper" }}
 
 ==- :icon-log:&nbsp; In Depth: `:steps` Option
 

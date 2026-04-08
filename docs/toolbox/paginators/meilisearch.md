@@ -55,9 +55,9 @@ Search paginators don't query a DB, but use the same positional technique as [:o
 ==- :icon-sliders:&nbsp; Options
 
 `search_method: :my_search`
-: Allows customization of the `meilisearch` method to use (default: `:ms_search`).
+: Customize the name of the `meilisearch` method to use (default `:ms_search`).
 
-{{ include "snippets/paginator-options" }}
+{{ include "options/paginator" }}
 
 ==- :icon-mention:&nbsp; Readers
 

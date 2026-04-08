@@ -2,14 +2,13 @@
 
 class Pagy
   class Keyset
-    # Use keyset pagination with resources for all the frontend helpers
+    # Keyset pagination with broad UI support
     class Keynav < Keyset
       # Avoid conflicts between filter arguments in composite SQL fragments
       PRIOR_PREFIX = 'prior_'
       PAGE_PREFIX  = 'page_'
 
-      # Define empty subclasses to allow specific typing without triggering autoload.
-      # The .new factory in Keyset will handle mixing in the adapter logic from Pagy::Keyset::Adapters.
+      # Define empty subclasses to allow specific typing without triggering autoload
       class ActiveRecord < self; end
       class Sequel < self; end
 
@@ -18,8 +17,7 @@ class Pagy
       # Finalize the instance variables needed for the UI
       def initialize(set, **)
         super
-        # Ensure next is called, so the last page used by the UI helpers is known
-        self.next
+
         @previous = @page - 1 unless @page == 1
         @in       = @records.size
       end
@@ -31,7 +29,7 @@ class Pagy
       def next
         records
         @count = 0 if !@more && @page == 1  # empty records (trigger the right info message for known 0 count)
-        return if !@more || (@options[:max_pages] && @page >= @options[:max_pages])
+        return unless @more
 
         @next ||= begin
                     unless @page_cutoff
@@ -80,6 +78,8 @@ class Pagy
         @more = true          # not the last page
         @set.limit(nil).to_a  # replaced by the compound predicate
       end
+
+      prepend Deprecated::Keynav if defined?(Deprecated::Keynav)
     end
   end
 end

@@ -7,7 +7,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Pagination for bootstrap: it returns the html with the series of links to the pages
     def bootstrap_series_nav(classes: 'pagination', **)
       a_lambda = a_lambda(**)
 

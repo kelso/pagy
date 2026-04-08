@@ -2,8 +2,8 @@
 
 class Pagy
   module NumericHelpers
-    # Instances with count return "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
-    # Instances with no count return only page info: "Page 3 of 100"
+    # Instances with count return "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total".
+    # Instances with no count return only page info: "Page 3 of 100".
     def info_tag(id: nil, item_name: nil)
       i18n_key  = if @count.nil?
                     'pagy.info_tag.no_count'

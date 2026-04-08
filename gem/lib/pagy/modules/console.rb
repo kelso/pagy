@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Provide a ready to use pagy environment when included in irb/rails console
+  # Ready to use pagy environment when included in irb/rails console
   module Console
     class Collection < Array
       def initialize(arr = Array(1..1000))

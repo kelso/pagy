@@ -1,4 +1,4 @@
-name: Unit Test
+name: API Test
 
 on:
   workflow_dispatch:
@@ -21,13 +21,12 @@ jobs:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
           paths: '[
-            ".github/workflows/unit-test.yml",
+            ".github/workflows/api-test.yml",
             ".simplecov",
             ".rubocop",
             "gem/**",
             "Gemfile.lock",
-            "Rakefile",
-            "test/**",
+            "test/unit/**",
             "tasks/**"
             ]'
           paths_ignore: '[
@@ -38,14 +37,14 @@ jobs:
             ]'
           do_not_skip: '["workflow_dispatch"]'
 
-  ruby_test:
+  api_test:
     needs: skip_check
     if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
-    name: Ruby ${{ matrix.ruby-version }} Test
+    name: API ${{ matrix.ruby-version }} Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.2', '3.3', '3.4', '4.0']
+        ruby-version: ['3.3', '3.4', '4.0']
       fail-fast: false
     steps:
       - uses: actions/checkout@v6.0.1
@@ -54,7 +53,10 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Check Rubocop compliance
+      - name: Test Rubocop compliance
         run: bundle exec rubocop --format github
-      - name: Check Tests
-        run: ${{ matrix.ruby-version == '4.0' && 'COVERAGE=true ' || '' }}bundle exec rake test:unit # fail for coverage < 100%
+      - name: Test current and next API
+        run: bundle exec thor test:api:all
+      - name: Test API Coverage
+        if: matrix.ruby-version == '4.0'
+        run: bundle exec thor test:api:coverage # fail for coverage < 100%

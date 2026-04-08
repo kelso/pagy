@@ -4,11 +4,9 @@ require_relative 'support/a_lambda' # inheritable
 
 class Pagy
   module NumericHelpers
-    # Return the enabled/disabled previous page anchor tag
     def previous_tag(...) = anchor_tag_for(:previous, ...)
   end
 
-  # Return the enabled/disabled next page anchor tag
   def next_tag(...) = anchor_tag_for(:next, ...)
 
   private

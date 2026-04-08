@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Test All" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="COVERAGE=true bundle exec rake rubocop test" />
+  <configuration default="false" name="Api" type="ShConfigurationType" folderName="Test">
+    <option name="SCRIPT_TEXT" value="bundle exec thor test:api:all" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
@@ -11,9 +11,7 @@
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="EXECUTE_IN_TERMINAL" value="false" />
     <option name="EXECUTE_SCRIPT_FILE" value="false" />
-    <envs>
-      <env name="COVERAGE" value="true" />
-    </envs>
+    <envs />
     <method v="2" />
   </configuration>
 </component>

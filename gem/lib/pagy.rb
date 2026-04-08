@@ -7,10 +7,9 @@ require_relative 'pagy/modules/abilities/linkable'
 require_relative 'pagy/modules/abilities/configurable'
 require_relative 'pagy/toolbox/helpers/loaders'
 
-# Top superclass: it defines only what's common to all the subclasses
-# noinspection RubyMismatchedArgumentType
+# Top superclass
 class Pagy
-  VERSION     = '43.4.4'
+  VERSION     = '43.5.0'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
@@ -34,12 +33,6 @@ class Pagy
 
   OPTIONS = {} # rubocop:disable Style/MutableConstant
 
-  def self.options
-    OPTIONS.tap do
-      warn "[PAGY] 'Pagy.options' is deprecated: use 'Pagy::OPTIONS directly'"
-    end
-  end
-
   extend Configurable
   include Linkable
   include HelperLoader
@@ -48,7 +41,7 @@ class Pagy
 
   protected
 
-  # Define the hierarchical identity methods, overridden by the respective classes
+  # Instance identity methods, overridden by the respective classes
   def offset?    = false
   def countless? = false
   def calendar?  = false
@@ -56,7 +49,7 @@ class Pagy
   def keyset?    = false
   def keynav?    = false
 
-  # Validates and assign the passed options: they must be present and value.to_i must be >= min
+  # Validate presence and min value of options
   def assign_and_check(name_min)
     name_min.each do |name, min|
       value = @options[name]
@@ -71,11 +64,6 @@ class Pagy
 
   # Merge all the DEFAULT constants of the class hierarchy with the options
   def assign_options(**options)
-    if options.key?(:max_pages)
-      warn "[PAGY] the ':max_pages' option is deprecated: " \
-           'use https://ddnexus.github.io/pagy/guides/how-to/#paginate-only-max-records instead.'
-    end
-
     @request = options.delete(:request) # internal object
     default  = {}
     current  = self.class
@@ -95,3 +83,5 @@ class Pagy
     include NumericHelperLoader
   end
 end
+
+require_relative ENV['PAGY_NEXT'] == 'true' ? 'pagy/next' : 'pagy/deprecated'

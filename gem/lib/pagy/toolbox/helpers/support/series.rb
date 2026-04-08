@@ -5,7 +5,7 @@ class Pagy
 
   protected
 
-  # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
+  # The array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(slots: @options[:slots] || SERIES_SLOTS, compact: @options[:compact], **)
     raise OptionError.new(self, :slots, 'to be an Integer >= 0', slots) unless slots.is_a?(Integer) && slots >= 0
     return [] if slots.zero?
@@ -14,7 +14,7 @@ class Pagy
       if slots >= @last
         series.push(*1..@last)
       else
-        half  = (slots - 1) / 2                       # the left half might be 1 page shorter when the slots are even
+        half  = (slots - 1) / 2                       # even slots makes the left half shorter by 1
         start = if @page <= half                      # @page in the first half
                   1
                 elsif @page > (@last - slots + half)  # @page in the last half

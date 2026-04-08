@@ -11,18 +11,17 @@ group :development, :test do
   gem 'childprocess'
   gem 'debug'
   gem 'ferrum'
-  gem 'http'           # used by the scripts/contributor-list.rb
+  gem 'http' # used by the scripts/contributor-list.rb
   gem 'i18n'
   gem 'irb'
   gem 'minitest'
   gem 'minitest-holdify'
   gem 'minitest-hooks'
   gem 'minitest-mock'
-  gem 'minitest-reporters', git: 'https://github.com/minitest-reporters/minitest-reporters', branch: 'master'
-  gem 'oj', require: false     # false is for testing with or without it
+  gem 'minitest-reporters'
+  gem 'oj', require: false # false is for testing with or without it
   gem 'rack'
   gem 'rails-i18n'
-  gem 'rbs'
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'
@@ -30,6 +29,7 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rubocop-thread_safety'
   gem 'simplecov', require: false
+  gem 'thor'
 end
 
 group :playground do

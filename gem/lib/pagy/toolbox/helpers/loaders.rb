@@ -2,7 +2,7 @@
 
 class Pagy
   # The aliaser defines loader methods and aliases them.
-  # When a method is called for the first time, its loader will load the full implementation
+  # When a method is called for the first time, its loader will load the full implementation,
   # which will overwrite the alias and will be executed.
   # Subsequent calls will run the full implementation directly.
   aliaser = lambda do |receiver, paths|

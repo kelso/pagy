@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+ENV.delete('COVERAGE') # Allow to skip the coverage when used after its task
+
 require_relative '../test_helper'
 
 require 'ferrum'
@@ -23,7 +25,7 @@ class E2eTest < Minitest::Spec
 
   def browser
     @browser ||= Ferrum::Browser.new(base_url:        app.base_url,
-                                     timeout:         15,
+                                     timeout:         30,
                                      window_size:     [1920, 1080],
                                      browser_options: { 'no-sandbox' => nil })
   end

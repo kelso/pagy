@@ -3,9 +3,8 @@
 class Pagy
   class Keyset
     module Adapters
-      # Keyset adapter for sequel
+      # Keyset adapter for Sequel ORM
       module Sequel
-        # Extract the keyset from the set
         def extract_keyset
           return {} unless @set.opts[:order]
 
@@ -21,18 +20,15 @@ class Pagy
           end
         end
 
-        # Get the keyset attributes from a record
         def keyset_attributes_from(record)
           record.to_hash.slice(*@keyset.keys)
         end
 
-        # Get the hash of quoted keyset identifiers
         def quoted_identifiers(table)
           db = @set.db
           @keyset.to_h { |column| [column, "#{db.quote_identifier(table)}.#{db.quote_identifier(column)}"] }
         end
 
-        # Typecast the attributes
         def typecast(attributes)
           model = @set.model
           db    = @set.db
@@ -44,7 +40,6 @@ class Pagy
           end
         end
 
-        # Append the missing keyset keys, if the set is restricted by select
         def ensure_select
           return if @set.opts[:select].nil?
 
@@ -52,7 +47,6 @@ class Pagy
           @set = @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
         end
 
-        # Apply the where predicate to the set
         def apply_where(predicate, arguments)
           @set = @set.where(::Sequel.lit(predicate, **arguments))
         end

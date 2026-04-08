@@ -3,7 +3,6 @@
 require 'json'
 require_relative '../../../modules/b64'
 
-# Relegate internal functions. Make overriding navs easier.
 class Pagy
   private
 

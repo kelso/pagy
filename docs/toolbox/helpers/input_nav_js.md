@@ -65,9 +65,9 @@ require 'pagy/console'
 
 ==- :icon-sliders:&nbsp; Options
 
-{{ include "snippets/nav-options" }}
+{{ include "options/navs" }}
 
-{{ include "snippets/helper-options" }}
+{{ include "options/helper" }}
 
 ==- :icon-alert:&nbsp; Caveats
 

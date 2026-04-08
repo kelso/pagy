@@ -7,7 +7,6 @@ class Pagy
   module NumericHelpers
     private
 
-    # Javascript combo pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
     def bootstrap_input_nav_js(classes: 'pagination', **)
       a_lambda = a_lambda(**)
 

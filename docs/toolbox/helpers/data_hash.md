@@ -53,7 +53,7 @@ require 'pagy/console'
   - `:next_url`
   - `:options`
   - `:page`
-  - `:page_url` _(alias of :current)_
+  - `:page_url` _(alias of :current_url)_
   - `:pages`
   - `:previous`
   - `:previous_url`
@@ -62,7 +62,8 @@ require 'pagy/console'
 
   Notice that you can also add other pagy method names not included in the default list (see [this discussion](https://github.com/ddnexus/pagy/discussions/812) for an example)
 
-{{ include "snippets/helper-options" }}
+
+{{ include "options/helper-url" }}
 
 ==- :icon-tools:&nbsp; Usage of `:url_template`
 

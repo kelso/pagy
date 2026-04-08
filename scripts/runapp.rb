@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Run a pagy app using the local bin/pagy and watchexec for auto-reloading
-# Usage: ruby scripts/runapp.rb APP [options]
+# Run a pagy app using the local bin/pagy and watchexec for auto-reloading.
+# Usage: ruby scripts/runapp.rb APP [options].
 
 require 'shellwords'
 

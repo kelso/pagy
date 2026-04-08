@@ -4,7 +4,7 @@ require 'yaml'
 require_relative 'p11n'
 
 class Pagy
-  # Pagy i18n implementation, compatible with the I18n gem, just a lot faster and lighter
+  # Faster and lighter Pagy i18n implementation, compatible with the I18n gem
   module I18n
     class KeyError < KeyError; end
 

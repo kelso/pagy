@@ -29,7 +29,7 @@ class Pagy
                            end
 
                options[:root_key]  = 'page' if options[:jsonapi] # enforce 'page' root_key for JSON:API
-               options[:request] ||= request                     # user set request or self.request
+               options[:request] ||= request                     # custom request Hash or self.request
                options[:request]   = Request.new(options)        # Pagy::Request
 
                Pagy.const_get(paginators[paginator]).paginate(*arguments)

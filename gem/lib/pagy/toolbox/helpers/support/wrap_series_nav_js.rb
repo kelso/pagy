@@ -9,7 +9,7 @@ require_relative 'a_lambda' # inherited use
 class Pagy
   private
 
-  # Return the reverse sorted array of widths, series, and labels generated from the :steps hash
+  # The reverse-sorted array of widths, series, and labels generated from the :steps hash.
   # If :steps is false it will use the single {0 => @options[:slots]} length
   def sequels(steps: @options[:steps] || { 0 => @options[:slots] || SERIES_SLOTS }, **)
     raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
@@ -18,7 +18,7 @@ class Pagy
     [widths, series, page_labels(series)]
   end
 
-  # Support for the Calendar API
+  # Support the Calendar API
   def page_labels(series)
     return unless calendar?
 
@@ -27,7 +27,7 @@ class Pagy
     end
   end
 
-  # Build the nav_js tag, with the specific tokens for the style
+  # Common series_nav_js logic
   def wrap_series_nav_js(tokens, nav_classes, id: nil, aria_label: nil, **)
     sequels     = sequels(**)
     nav_classes = "pagy-rjs #{nav_classes}" if sequels[0].size > 1

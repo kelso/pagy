@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Generate the hash of the pagination links
   def urls_hash(**)
     template = compose_page_url(PAGE_TOKEN, **)
 

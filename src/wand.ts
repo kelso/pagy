@@ -109,11 +109,11 @@ const fontIsolation = (async () => {
       const fontFaceMatches = cssText.match(fontFaceRegex);
       result.fontFaceRules = fontFaceMatches ? fontFaceMatches.join('\n\n') : ''; // Add extra newline
 
-      // Get component CSS by removing @font-face rules from the MODIFIED cssText
+      // Get component CSS by removing @font-face rules from the MODIFIED cssText.
       result.componentCss = cssText.replace(fontFaceRegex, '').trim();
     } catch (error) {
       console.error("Failed to process Google Font CSS:", fontCssUrl, error);
-      // Re-throw to allow Promise.all to fail if needed
+      // Re-throw to allow Promise.all to fail if needed.
       throw error;
     }
     return result;
@@ -132,11 +132,11 @@ const fontIsolation = (async () => {
     const styleEl = document.createElement('style');
     styleEl.id    = 'pagy-wand-font-css';
     styleEl.textContent = allFontFaceRules;
-    // Check if head exists before appending (safer)
+    // Check if head exists before appending (safer).
     if (document.head) {
       document.head.appendChild(styleEl);
     } else {
-      // Fallback if head isn't ready (less likely with IIFE placement)
+      // Fallback if head isn't ready (less likely with IIFE placement).
       document.addEventListener('DOMContentLoaded', () => document.head.appendChild(styleEl), { once: true });
     }
   }
@@ -1039,7 +1039,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateOverride();
   }
 
-  // Initial load logic
+  // Initial load logic.
   const initialOverride = getSessionItem(OVERRIDE);
   const presetName      = getSessionItem(PRESET) ?? 'Default';
   const presetCSS       = normalize(presets[presetName]);
@@ -1050,7 +1050,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyCSS(presetCSS)
   }
 
-  // Update the override area and save its content
+  // Update the override area and save its content.
   function updateOverride() {
     let override = `.pagy {\n`;
     Object.values(controls).forEach((c) => {
@@ -1101,14 +1101,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     setSessionPosition(newLeft, newTop);
   }
 
-  // Resize event listener
+  // Resize event listener.
   let resizeTimeout: number | undefined;   // debouncing
   window.addEventListener('resize', () => {
     if (resizeTimeout) clearTimeout(resizeTimeout);
     resizeTimeout = window.setTimeout(keepTopBarInView, 250);
   });
 
-  // Set the position from sessionStorage (or transition-center it)
+  // Set the position from sessionStorage (or transition-center it).
   const position       = getSessionPosition();
   const wandPositioned = new CustomEvent('wand-positioned');
 
@@ -1122,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       panel.classList.add('centered'); // Add class to trigger transition
     });
     panel.addEventListener('transitionend', (e) => {
-      // Only act when the transform transition ends
+      // Only act when the transform transition ends.
       if (e.propertyName === 'transform') {
         panel.style.transition = 'none'; // Remove transition for immediate positioning
         const rect       = panel.getBoundingClientRect();

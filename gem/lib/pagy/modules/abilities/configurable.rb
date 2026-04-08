@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add configuration methods
+  # Configuration methods
   module Configurable
-    # Deprecated: Sync the pagy javascript targets. Use sync(:javascripts, ...) instead.
-    def sync_javascript(...)
-      warn "[PAGY] 'Pagy.sync_javascript(...)' is deprecated: use 'Pagy.sync(:javascript, ...)' instead."
-      sync(:javascript, ...)
-    end
-
     # Sync the pagy resource targets.
     def sync(resource, destination, *targets)
       files    = ROOT.join("#{resource}s").glob("{#{targets.join(',')}}")
