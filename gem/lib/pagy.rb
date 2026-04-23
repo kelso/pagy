@@ -62,9 +62,18 @@ class Pagy
     end
   end
 
+  def validate_string_values(options)
+    (options.keys & %i[page_key limit_key]).each do |key|
+      raise OptionError.new(self, key, 'to be String', options[key]) \
+      unless options[key].is_a?(String)
+    end
+  end
+
   # Merge all the DEFAULT constants of the class hierarchy with the options
   def assign_options(**options)
     @request = options.delete(:request) # internal object
+    validate_string_values(options)
+
     default  = {}
     current  = self.class
 
